@@ -63,7 +63,7 @@ Controller::~Controller() {
 }
 
 // TODO:: Allow for clearing to a different color or background image
-void Controller::Clear() {
+void Controller::ClearScreen() {
     SDL_SetRenderDrawColor( gRenderer_, 0xFF, 0xFF, 0xFF, 0xFF );
     SDL_RenderClear( gRenderer_ );
 }

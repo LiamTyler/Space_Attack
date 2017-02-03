@@ -9,7 +9,8 @@ class GameActor {
         GameActor(int x, int y, int vx, int vy, int speed, Controller* c);
         ~GameActor();
         virtual void UpdatePosition();
-        virtual void Fire() {}
+        virtual void Draw();
+        virtual void Update();
 
         // Getters and setters
         inline void setX(int x) { x_ = x; }

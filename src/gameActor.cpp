@@ -20,3 +20,10 @@ void GameActor::UpdatePosition() {
     x_ += speed_ * vel_x_;
     y_ += speed_ * vel_y_;
 }
+
+void GameActor::Draw() {}
+
+void GameActor::Update() {
+    UpdatePosition();
+    Draw();
+}

@@ -9,7 +9,7 @@ class Controller {
         Controller(int width, int height);
         ~Controller();
         bool Init();
-        void Clear();
+        void ClearScreen();
         void UpdateScreen();
         inline int getWidth() { return screenWidth_; }
         inline int getHeight() { return screenHeight_; }

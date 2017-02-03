@@ -21,13 +21,12 @@ int main( int argc, char* args[] ) {
     SDL_Event e;
 
     while( !quit ) {
-        p->UpdatePosition();
         while( SDL_PollEvent( &e ) != 0 )
         {
             if( e.type == SDL_QUIT )
             {
                 quit = true;
-            } else if (e.type == SDL_KEYDOWN ) {
+            } else if (e.type == SDL_KEYDOWN && e.key.repeat == 0) {
                 switch (e.key.keysym.sym) {
                     case SDLK_UP:
                         p->setVelY(-1);
@@ -41,8 +40,12 @@ int main( int argc, char* args[] ) {
                     case SDLK_RIGHT:
                         p->setVelX(1);
                         break;
+                    case SDLK_SPACE:
+                        cout << "Firing" << endl;
+                        p->Fire();
+                        break;
                 }
-            } else if (e.type == SDL_KEYUP ) {
+            } else if (e.type == SDL_KEYUP && e.key.repeat == 0) {
                 switch (e.key.keysym.sym) {
                     case SDLK_UP:
                     case SDLK_DOWN:
@@ -57,11 +60,9 @@ int main( int argc, char* args[] ) {
 
         }
 
-        window.Clear();
+        window.ClearScreen();
 
-        SDL_Rect fillRect = { p->getX(), p->getY(), 50, 50 };
-        SDL_SetRenderDrawColor( gRenderer, 0xFF, 0x00, 0x00, 0xFF );		
-        SDL_RenderFillRect( gRenderer, &fillRect );
+        p->Update();
 
         window.UpdateScreen();
     }
