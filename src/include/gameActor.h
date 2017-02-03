@@ -1,10 +1,12 @@
 #ifndef SRC_INCLUDE_GAMEACTOR_H_
 #define SRC_INCLUDE_GAMEACTOR_H_
 
+#include "include/controller.h"
+
 class GameActor {
     public:
         GameActor();
-        GameActor(int x, int y, int vx, int vy, int speed);
+        GameActor(int x, int y, int vx, int vy, int speed, Controller* c);
         ~GameActor();
         virtual void UpdatePosition();
         virtual void Fire() {}
@@ -20,13 +22,15 @@ class GameActor {
         inline int getVelX() { return vel_x_; }
         inline int getVelY() { return vel_y_; }
         inline int getSpeed() { return speed_; }
+        inline Controller* getController() { return controller_; }
 
-    private:
+    protected:
         int x_;
         int y_;
         int vel_x_;
         int vel_y_;
         int speed_;
+        Controller* controller_;
 };
 
 #endif

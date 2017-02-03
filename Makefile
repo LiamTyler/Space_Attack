@@ -4,8 +4,8 @@ BINDIR = $(BUILDDIR)/bin
 OBJDIR = $(BUILDDIR)/obj
 CXX = g++
 CXXLIBS += -lSDL2 -lSDL2_image
-export CXXFLAGS = -I$(SRCDIR)
-export SHELL = /bin/bash -x
+CXXFLAGS += -I$(SRCDIR) -std=c++11
+SHELL = /bin/bash -x
 
 rwildcard=$(foreach d,$(wildcard $1*),$(call rwildcard,$d/,$2) $(filter $(subst *,%,$2),$d))
 make-depend-cxx=$(CXX) $(CXXFLAGS) -MM -MF $3 -MP -MT $2 $1
