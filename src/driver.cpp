@@ -6,8 +6,8 @@
 
 using namespace std;
 
-const int SCREEN_WIDTH = 640;
-const int SCREEN_HEIGHT = 480;
+const int SW = 1280;
+const int SH = 720;
 
 bool init();
 void close();
@@ -35,7 +35,7 @@ bool init()
         }
 
         //Create window
-        gWindow = SDL_CreateWindow( "SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN );
+        gWindow = SDL_CreateWindow( "SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SW, SH, SDL_WINDOW_SHOWN );
         if( gWindow == NULL )
         {
             printf( "Window could not be created! SDL Error: %s\n", SDL_GetError() );
@@ -85,6 +85,8 @@ void close()
 
 int main( int argc, char* args[] )
 {
+    Player p(SW / 2, SH / 2, 0, 0, 1);
+
     //Start up SDL and create window
     if( !init() )
     {
@@ -101,6 +103,7 @@ int main( int argc, char* args[] )
         //While application is running
         while( !quit )
         {
+            p.UpdatePosition();
             //Handle events on queue
             while( SDL_PollEvent( &e ) != 0 )
             {
@@ -108,7 +111,34 @@ int main( int argc, char* args[] )
                 if( e.type == SDL_QUIT )
                 {
                     quit = true;
+                } else if (e.type == SDL_KEYDOWN ) {
+                    switch (e.key.keysym.sym) {
+                        case SDLK_UP:
+                            p.setVelY(-1);
+                            break;
+                        case SDLK_DOWN:
+                            p.setVelY(1);
+                            break;
+                        case SDLK_LEFT:
+                            p.setVelX(-1);
+                            break;
+                        case SDLK_RIGHT:
+                            p.setVelX(1);
+                            break;
+                    }
+                } else if (e.type == SDL_KEYUP ) {
+                    switch (e.key.keysym.sym) {
+                        case SDLK_UP:
+                        case SDLK_DOWN:
+                            p.setVelY(0);
+                            break;
+                        case SDLK_LEFT:
+                        case SDLK_RIGHT:
+                            p.setVelX(0);
+                            break;
+                    }
                 }
+
             }
 
             //Clear screen
@@ -116,25 +146,9 @@ int main( int argc, char* args[] )
             SDL_RenderClear( gRenderer );
 
             //Render red filled quad
-            SDL_Rect fillRect = { SCREEN_WIDTH / 4, SCREEN_HEIGHT / 4, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 };
+            SDL_Rect fillRect = { p.getX(), p.getY(), 50, 50 };
             SDL_SetRenderDrawColor( gRenderer, 0xFF, 0x00, 0x00, 0xFF );		
             SDL_RenderFillRect( gRenderer, &fillRect );
-
-            //Render green outlined quad
-            SDL_Rect outlineRect = { SCREEN_WIDTH / 6, SCREEN_HEIGHT / 6, SCREEN_WIDTH * 2 / 3, SCREEN_HEIGHT * 2 / 3 };
-            SDL_SetRenderDrawColor( gRenderer, 0x00, 0xFF, 0x00, 0xFF );		
-            SDL_RenderDrawRect( gRenderer, &outlineRect );
-
-            //Draw blue horizontal line
-            SDL_SetRenderDrawColor( gRenderer, 0x00, 0x00, 0xFF, 0xFF );		
-            SDL_RenderDrawLine( gRenderer, 0, SCREEN_HEIGHT / 2, SCREEN_WIDTH, SCREEN_HEIGHT / 2 );
-
-            //Draw vertical line of yellow dots
-            SDL_SetRenderDrawColor( gRenderer, 0xFF, 0xFF, 0x00, 0xFF );
-            for( int i = 0; i < SCREEN_HEIGHT; i += 4 )
-            {
-                SDL_RenderDrawPoint( gRenderer, SCREEN_WIDTH / 2, i );
-            }
 
             //Update screen
             SDL_RenderPresent( gRenderer );
