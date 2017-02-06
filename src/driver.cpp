@@ -5,6 +5,8 @@
 #include "include/controller.h"
 #include "include/player.h"
 #include "include/timer.h"
+#include "include/inputHandler.h"
+#include "include/command.h"
 
 using namespace std;
 
@@ -21,63 +23,19 @@ int main( int argc, char* args[] ) {
     bool quit = false;
     SDL_Event e;
     Timer stepTimer;
+    InputHandler inputHandler;
 
     while( !quit ) {
         while( SDL_PollEvent( &e ) != 0 )
         {
             if( e.type == SDL_QUIT ) {
                 quit = true;
-            } else if (e.type == SDL_KEYDOWN && e.key.repeat == 0) {
-                /*
-                //Set texture based on current keystate
-                const Uint8* currentKeyStates = SDL_GetKeyboardState( NULL );
-                if( currentKeyStates[ SDL_SCANCODE_UP ] ) {
-                p->setVelY(-1);
-                }
-                else if( currentKeyStates[ SDL_SCANCODE_DOWN ] ) {
-                p->setVelY(1);
-                }
-                else if( currentKeyStates[ SDL_SCANCODE_LEFT ] ) {
-                p->setVelX(-1);
-                }
-                else if( currentKeyStates[ SDL_SCANCODE_RIGHT ] ) {
-                p->setVelX(1);
-                } else if (currentKeyStates [ SDL_SCANCODE_SPACE ] ) {
-                cout << (e.key.repeat == 0) << endl;
-                p->Fire();
-                }
-                */
-                switch (e.key.keysym.sym) {
-                    case SDLK_UP:
-                        p->setVelY(-1);
-                        break;
-                    case SDLK_DOWN:
-                        p->setVelY(1);
-                        break;
-                    case SDLK_LEFT:
-                        p->setVelX(-1);
-                        break;
-                    case SDLK_RIGHT:
-                        p->setVelX(1);
-                        break;
-                    case SDLK_SPACE:
-                        cout << "Firing" << endl;
-                        p->Fire();
-                        break;
-                }
-            } else if (e.type == SDL_KEYUP && e.key.repeat == 0) {
-                switch (e.key.keysym.sym) {
-                    case SDLK_UP:
-                    case SDLK_DOWN:
-                        p->setVelY(0);
-                        break;
-                    case SDLK_LEFT:
-                    case SDLK_RIGHT:
-                        p->setVelX(0);
-                        break;
+            } else {
+                Command* command = inputHandler.HandleInput(e);
+                if (command) {
+                    command->execute(*p);
                 }
             }
-
         }
         float timeStep = stepTimer.getTicks() / 1000.f;
 

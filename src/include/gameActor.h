@@ -10,7 +10,17 @@ class GameActor {
         ~GameActor();
         virtual void UpdatePosition(double timeStep);
         virtual void Draw();
+        virtual void Fire() {}
         virtual void Update(double timeStep);
+
+        void moveLeft() { vel_x_ = -1; }
+        void moveRight() { vel_x_ = 1; }
+        void moveUp() { vel_y_ = -1; }
+        void moveDown() { vel_y_ = 1; }
+        void stopLeft() { vel_x_ = 0; }
+        void stopRight() { vel_x_ = 0; }
+        void stopUp() { vel_y_ = 0; }
+        void stopDown() { vel_y_ = 0; }
 
         // Getters and setters
         inline void setX(double x) { x_ = x; }
