@@ -2,15 +2,12 @@
 
 GameActor::GameActor() : x_(0),
                          y_(0),
-                         vel_x_(0),
-                         vel_y_(0),
-                         speed_(0) {}
+                         movement_(new Movement),
+                         controller_(nullptr) {}
 
-GameActor::GameActor(double x, double y, double vx, double vy, double speed, Controller* c) : x_(x),
+GameActor::GameActor(double x, double y, int vx, int vy, double speed, Controller* c) : x_(x),
                                                                 y_(y),
-                                                                vel_x_(vx),
-                                                                vel_y_(vy),
-                                                                speed_(speed),
+                                                                movement_(new Movement(vx,vy,speed)),
                                                                 controller_(c) {
 }
 
@@ -21,8 +18,8 @@ void GameActor::UpdatePosition(double timeStep) {
     x_ += timeStep * speed_ * vel_x_;
     y_ += timeStep * speed_ * vel_y_;
     */
-    x_ += timeStep * speed_ * movement_.getVelX();
-    y_ += timeStep * speed_ * movement_.getVelY();
+    x_ += timeStep * movement_->getSpeed() * movement_->getVelX();
+    y_ += timeStep * movement_->getSpeed() * movement_->getVelY();
 
 }
 

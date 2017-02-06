@@ -8,7 +8,7 @@ class Bullet : public GameActor {
         Bullet(double x, double y, double vx, double vy, double speed, Controller* c);
         virtual void UpdatePosition(double timeStep);
         virtual void Draw();
-        inline bool isAlive() { return status_; }
+        bool isAlive() { return status_; }
     protected:
         bool status_; /// True if alive, False if dead
 };

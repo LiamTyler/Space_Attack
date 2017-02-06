@@ -1,7 +1,12 @@
 #include "include/movement.h"
 
 Movement::Movement() : x_primary_(new node{ 0, nullptr }),
-                       y_primary_(new node{ 0, nullptr }) {}
+                       y_primary_(new node{ 0, nullptr }),
+                       speed_(0) {}
+
+Movement::Movement(int vx, int vy, double speed) : x_primary_(new node{ vx, nullptr }),
+                                                   y_primary_(new node{ vy, nullptr }),
+                                                   speed_(speed) {}
 
 void Movement::MoveLeft() {
     if (x_primary_->amount != -1) {
@@ -67,7 +72,6 @@ void Movement::StopLeft() {
     }
 }
             
-
 void Movement::StopRight() {
     if (x_primary_->amount == 1) {
         node* second = x_primary_->next;
@@ -126,4 +130,22 @@ void Movement::StopDown() {
             y_primary_->next = nullptr;
         }
     }
+}
+
+void Movement::setVelX(int v) {
+    node* new_node = new node;
+    new_node->amount = v;
+    if (x_primary_->next)
+        delete x_primary_->next;
+    new_node->next = x_primary_;
+    x_primary_ = new_node;
+}
+
+void Movement::setVelY(int v) {
+    node* new_node = new node;
+    new_node->amount = v;
+    if (y_primary_->next)
+        delete y_primary_->next;
+    new_node->next = y_primary_;
+    y_primary_ = new_node;
 }

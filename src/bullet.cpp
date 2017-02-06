@@ -5,8 +5,8 @@ Bullet::Bullet(double x, double y, double vx, double vy, double speed, Controlle
     status_(true) {}
 
 void Bullet::UpdatePosition(double timeStep) {
-    x_ += timeStep * speed_ * vel_x_;
-    y_ += timeStep * speed_ * vel_y_;
+    x_ += timeStep * movement_->getSpeed() * movement_->getVelX();
+    y_ += timeStep * movement_->getSpeed() * movement_->getVelY();
 
     if (x_ < 0 || controller_->getWidth() <= x_ ||
         y_ < 0 || controller_->getHeight() <= y_)

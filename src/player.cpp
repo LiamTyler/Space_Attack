@@ -9,7 +9,7 @@ Player::Player(Controller* c) : GameActor(c->getWidth() / 2, c->getHeight() / 2,
 
 }
 
-Player::Player(double x, double y, double w, double h, double vx, double vy, double speed, Controller* c, Weapon* wp) :
+Player::Player(double x, double y, double w, double h, int vx, int vy, double speed, Controller* c, Weapon* wp) :
     GameActor(x, y, vx, vy, speed, c),
     width_(w),
     height_(h),
@@ -30,8 +30,10 @@ void Player::UpdatePosition(double timeStep) {
     x_ = std::max(0.0, std::min(sWidth - width_, x_ + timeStep * speed_ * vel_x_));
     y_ = std::max(0.0, std::min(sHeight - height_, y_ + timeStep * speed_ * vel_y_));
     */
-    x_ = std::max(0.0, std::min(sWidth - width_, x_ + timeStep * speed_ * movement_.getVelX()));
-    y_ = std::max(0.0, std::min(sHeight - height_, y_ + timeStep * speed_ * movement_.getVelY()));
+    x_ = std::max(0.0, std::min(sWidth - width_, x_ +
+                timeStep * movement_->getSpeed() * movement_->getVelX()));
+    y_ = std::max(0.0, std::min(sHeight - height_, y_ +
+                timeStep * movement_->getSpeed() * movement_->getVelY()));
 }
 
 void Player::Draw() {    

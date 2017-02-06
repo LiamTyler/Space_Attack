@@ -7,43 +7,37 @@
 class GameActor {
     public:
         GameActor();
-        GameActor(double x, double y, double vx, double vy, double speed, Controller* c);
+        GameActor(double x, double y, int vx, int vy, double speed, Controller* c);
         ~GameActor();
         virtual void UpdatePosition(double timeStep);
         virtual void Draw();
         virtual void Update(double timeStep);
 
-        void MoveLeft() { movement_.MoveLeft(); }
-        void MoveRight() { movement_.MoveRight(); }
-        void MoveUp() { movement_.MoveUp(); }
-        void MoveDown() { movement_.MoveDown(); }
+        void MoveLeft() { movement_->MoveLeft(); }
+        void MoveRight() { movement_->MoveRight(); }
+        void MoveUp() { movement_->MoveUp(); }
+        void MoveDown() { movement_->MoveDown(); }
         virtual void Fire() {}
-        void StopLeft() { movement_.StopLeft(); }
-        void StopRight() { movement_.StopRight(); }
-        void StopUp() { movement_.StopUp(); }
-        void StopDown() { movement_.StopDown(); }
+        void StopLeft() { movement_->StopLeft(); }
+        void StopRight() { movement_->StopRight(); }
+        void StopUp() { movement_->StopUp(); }
+        void StopDown() { movement_->StopDown(); }
         virtual void StopFire() {}
 
         // Getters and setters
-        inline void setX(double x) { x_ = x; }
-        inline void setY(double y) { y_ = y; }
-        inline void setVelX(double v) { vel_x_ = v; }
-        inline void setVelY(double v) { vel_y_ = v; }
-        inline void setSpeed(int speed) { speed_ = speed; }
-        inline double getX() { return x_; }
-        inline double getY() { return y_; }
-        inline double getVelX() { return vel_x_; }
-        inline double getVelY() { return vel_y_; }
-        inline double getSpeed() { return speed_; }
-        inline Controller* getController() { return controller_; }
+        void setX(double x) { x_ = x; }
+        void setY(double y) { y_ = y; }
+        double getX() { return x_; }
+        double getY() { return y_; }
+        int getVelX() { return movement_->getVelX(); }
+        int getVelY() { return movement_->getVelY(); }
+        double getSpeed() { return movement_->getSpeed(); }
+        Controller* getController() { return controller_; }
 
     protected:
         double x_;
         double y_;
-        double vel_x_;
-        double vel_y_;
-        Movement movement_;
-        double speed_;
+        Movement* movement_;
         Controller* controller_;
 };
 

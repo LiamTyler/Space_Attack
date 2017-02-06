@@ -11,9 +11,9 @@ class Controller {
         bool Init();
         void ClearScreen();
         void UpdateScreen();
-        inline int getWidth() { return screenWidth_; }
-        inline int getHeight() { return screenHeight_; }
-        inline SDL_Renderer* getRenderer() { return gRenderer_; }
+        int getWidth() { return screenWidth_; }
+        int getHeight() { return screenHeight_; }
+        SDL_Renderer* getRenderer() { return gRenderer_; }
     private:
         int screenWidth_;
         int screenHeight_;

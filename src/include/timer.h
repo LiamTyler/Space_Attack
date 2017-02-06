@@ -13,8 +13,8 @@ class Timer {
         void Unpause();
 
         uint32_t getTicks();
-        inline bool isStarted() { return started_; }
-        inline bool isPaused() { return paused_; }
+        bool isStarted() { return started_; }
+        bool isPaused() { return paused_; }
 
     private:
         uint32_t startTicks_;
