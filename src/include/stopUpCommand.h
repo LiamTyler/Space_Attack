@@ -6,7 +6,7 @@
 class StopUpCommand : public Command {
     public:
         virtual void execute(GameActor& actor) {
-            actor.stopUp();
+            actor.StopUp();
         }
 };
 

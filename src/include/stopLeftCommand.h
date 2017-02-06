@@ -6,7 +6,7 @@
 class StopLeftCommand : public Command {
     public:
         virtual void execute(GameActor& actor) {
-            actor.stopLeft();
+            actor.StopLeft();
         }
 };
 

@@ -6,7 +6,7 @@
 class MoveRightCommand: public Command {
     public:
         virtual void execute(GameActor& actor) {
-            actor.moveRight();
+            actor.MoveRight();
         }
 };
 

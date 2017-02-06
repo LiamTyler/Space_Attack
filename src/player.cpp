@@ -26,8 +26,12 @@ void Player::Update(double timeStep) {
 void Player::UpdatePosition(double timeStep) {
     double sHeight = controller_->getHeight();
     double sWidth = controller_->getWidth();
+    /*
     x_ = std::max(0.0, std::min(sWidth - width_, x_ + timeStep * speed_ * vel_x_));
     y_ = std::max(0.0, std::min(sHeight - height_, y_ + timeStep * speed_ * vel_y_));
+    */
+    x_ = std::max(0.0, std::min(sWidth - width_, x_ + timeStep * speed_ * movement_.getVelX()));
+    y_ = std::max(0.0, std::min(sHeight - height_, y_ + timeStep * speed_ * movement_.getVelY()));
 }
 
 void Player::Draw() {    

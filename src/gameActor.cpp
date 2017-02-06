@@ -17,8 +17,13 @@ GameActor::GameActor(double x, double y, double vx, double vy, double speed, Con
 GameActor::~GameActor() {}
 
 void GameActor::UpdatePosition(double timeStep) {
+    /*
     x_ += timeStep * speed_ * vel_x_;
     y_ += timeStep * speed_ * vel_y_;
+    */
+    x_ += timeStep * speed_ * movement_.getVelX();
+    y_ += timeStep * speed_ * movement_.getVelY();
+
 }
 
 void GameActor::Draw() {}

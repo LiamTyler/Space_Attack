@@ -2,6 +2,7 @@
 #define SRC_INCLUDE_GAMEACTOR_H_
 
 #include "include/controller.h"
+#include "include/movement.h"
 
 class GameActor {
     public:
@@ -10,17 +11,18 @@ class GameActor {
         ~GameActor();
         virtual void UpdatePosition(double timeStep);
         virtual void Draw();
-        virtual void Fire() {}
         virtual void Update(double timeStep);
 
-        void moveLeft() { vel_x_ = -1; }
-        void moveRight() { vel_x_ = 1; }
-        void moveUp() { vel_y_ = -1; }
-        void moveDown() { vel_y_ = 1; }
-        void stopLeft() { vel_x_ = 0; }
-        void stopRight() { vel_x_ = 0; }
-        void stopUp() { vel_y_ = 0; }
-        void stopDown() { vel_y_ = 0; }
+        void MoveLeft() { movement_.MoveLeft(); }
+        void MoveRight() { movement_.MoveRight(); }
+        void MoveUp() { movement_.MoveUp(); }
+        void MoveDown() { movement_.MoveDown(); }
+        virtual void Fire() {}
+        void StopLeft() { movement_.StopLeft(); }
+        void StopRight() { movement_.StopRight(); }
+        void StopUp() { movement_.StopUp(); }
+        void StopDown() { movement_.StopDown(); }
+        virtual void StopFire() {}
 
         // Getters and setters
         inline void setX(double x) { x_ = x; }
@@ -40,6 +42,7 @@ class GameActor {
         double y_;
         double vel_x_;
         double vel_y_;
+        Movement movement_;
         double speed_;
         Controller* controller_;
 };
