@@ -15,12 +15,16 @@ A large part of this project is to explore different areas of game development. 
 Below is a record if issues to fix and features to implement, mostly so I don't forget and can track progress.
 
 ### Current issues:
-    - ~~VSYNC~~ ~~currently~~ ~~not~~ ~~working.~~ ~~Lots~~ ~~of~~ ~~choppiness.~~ ~~(2/5/17)~~ See cap FPS
+    - VSYNC currently not working. Lots of choppiness. (2/5/17). See frame independent movement.
     - Key.repeat flag just not working with at least sdl 2.0.5 (2/5/17)
 
-### Next implementations:
-    - Command design pattern (2/5/17)
-    - ~~cap~~ ~~FPS~~ ~~(2/5/17)~~ implemented simple frame independent movement 2/6/17
-    - smooth movement (2/6/17)
-    - Reorganize bullet + weapon classes (2/6/17)
-    - Reorganize controller, possibly make it so not every class needs reference to it (2/6/17)
+### Features:
+
+#### Completed:
+    - (2/6/17) Command design pattern (NEEDS WORK!!)
+    - (2/6/17) Implemented simple frame independent movement
+
+#### In Progress:
+    - (2/6/17 - ) smooth movement
+    - (2/6/17 - ) Reorganize bullet + weapon classes
+    - (2/6/17 - ) Reorganize controller, possibly make it so not every class needs reference to it
