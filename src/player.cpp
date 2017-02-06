@@ -2,7 +2,7 @@
 #include "include/controller.h"
 #include <algorithm>
 
-Player::Player(Controller* c) : GameActor(c->getWidth() / 2, c->getHeight() / 2, 0, 0, 1, c),
+Player::Player(Controller* c) : GameActor(c->getWidth() / 2, c->getHeight() / 2, 0, 0, 5, c),
                                 width_(50),
                                 height_(50),
                                 weapon_(new Weapon(c)) {

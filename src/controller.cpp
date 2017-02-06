@@ -38,7 +38,7 @@ bool Controller::Init() {
         cerr << "Window could not be created! SDL Error: " << SDL_GetError() << endl;
         return false;
     }
-    gRenderer_ = SDL_CreateRenderer( gWindow_, -1, SDL_RENDERER_ACCELERATED );
+    gRenderer_ = SDL_CreateRenderer( gWindow_, -1, SDL_RENDERER_ACCELERATED); // | SDL_RENDERER_PRESENTVSYNC );
     if( !gRenderer_ ) {
         cerr << "Renderer could not be created! SDL Error: " << SDL_GetError() << endl;
         return false;

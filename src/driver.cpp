@@ -23,10 +23,28 @@ int main( int argc, char* args[] ) {
     while( !quit ) {
         while( SDL_PollEvent( &e ) != 0 )
         {
-            if( e.type == SDL_QUIT )
-            {
+            if( e.type == SDL_QUIT ) {
                 quit = true;
             } else if (e.type == SDL_KEYDOWN && e.key.repeat == 0) {
+                /*
+                //Set texture based on current keystate
+                const Uint8* currentKeyStates = SDL_GetKeyboardState( NULL );
+                if( currentKeyStates[ SDL_SCANCODE_UP ] ) {
+                p->setVelY(-1);
+                }
+                else if( currentKeyStates[ SDL_SCANCODE_DOWN ] ) {
+                p->setVelY(1);
+                }
+                else if( currentKeyStates[ SDL_SCANCODE_LEFT ] ) {
+                p->setVelX(-1);
+                }
+                else if( currentKeyStates[ SDL_SCANCODE_RIGHT ] ) {
+                p->setVelX(1);
+                } else if (currentKeyStates [ SDL_SCANCODE_SPACE ] ) {
+                cout << (e.key.repeat == 0) << endl;
+                p->Fire();
+                }
+                */
                 switch (e.key.keysym.sym) {
                     case SDLK_UP:
                         p->setVelY(-1);
