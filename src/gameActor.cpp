@@ -16,14 +16,14 @@ GameActor::GameActor(double x, double y, double vx, double vy, double speed, Con
 
 GameActor::~GameActor() {}
 
-void GameActor::UpdatePosition() {
-    x_ += speed_ * vel_x_;
-    y_ += speed_ * vel_y_;
+void GameActor::UpdatePosition(double timeStep) {
+    x_ += timeStep * speed_ * vel_x_;
+    y_ += timeStep * speed_ * vel_y_;
 }
 
 void GameActor::Draw() {}
 
-void GameActor::Update() {
-    UpdatePosition();
+void GameActor::Update(double timeStep) {
+    UpdatePosition(timeStep);
     Draw();
 }

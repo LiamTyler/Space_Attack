@@ -20,7 +20,7 @@ Player::Player(double x, double y, double w, double h, double vx, double vy, dou
 void Player::Update(double timeStep) {
     UpdatePosition(timeStep);
     Draw();
-    weapon_->Update();
+    weapon_->Update(timeStep);
 }
 
 void Player::UpdatePosition(double timeStep) {

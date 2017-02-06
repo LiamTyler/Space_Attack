@@ -6,8 +6,8 @@
 class Bullet : public GameActor {
     public:
         Bullet(double x, double y, double vx, double vy, double speed, Controller* c);
-        void UpdatePosition();
-        void Draw();
+        virtual void UpdatePosition(double timeStep);
+        virtual void Draw();
         inline bool isAlive() { return status_; }
     protected:
         bool status_; /// True if alive, False if dead

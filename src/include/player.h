@@ -10,10 +10,10 @@ class Player : public GameActor {
         Player(Controller* c);
         Player(double x, double y, double w, double h, double vx, double vy,
                double speed, Controller* c, Weapon* wp);
-        void Update(double timeStep);
-        void UpdatePosition(double timeStep);
-        void Draw();
-        void Fire();
+        virtual void Update(double timeStep);
+        virtual void UpdatePosition(double timeStep);
+        virtual void Draw();
+        virtual void Fire();
     private:
         Weapon* weapon_;
         double width_;

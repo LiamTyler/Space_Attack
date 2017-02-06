@@ -8,9 +8,9 @@ class GameActor {
         GameActor();
         GameActor(double x, double y, double vx, double vy, double speed, Controller* c);
         ~GameActor();
-        virtual void UpdatePosition();
+        virtual void UpdatePosition(double timeStep);
         virtual void Draw();
-        virtual void Update();
+        virtual void Update(double timeStep);
 
         // Getters and setters
         inline void setX(double x) { x_ = x; }
