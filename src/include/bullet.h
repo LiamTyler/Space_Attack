@@ -5,7 +5,7 @@
 
 class Bullet : public GameActor {
     public:
-        Bullet(int x, int y, int vx, int vy, int speed, Controller* c);
+        Bullet(double x, double y, double vx, double vy, double speed, Controller* c);
         void UpdatePosition();
         void Draw();
         inline bool isAlive() { return status_; }

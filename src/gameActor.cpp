@@ -6,7 +6,7 @@ GameActor::GameActor() : x_(0),
                          vel_y_(0),
                          speed_(0) {}
 
-GameActor::GameActor(int x, int y, int vx, int vy, int speed, Controller* c) : x_(x),
+GameActor::GameActor(double x, double y, double vx, double vy, double speed, Controller* c) : x_(x),
                                                                 y_(y),
                                                                 vel_x_(vx),
                                                                 vel_y_(vy),

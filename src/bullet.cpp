@@ -1,6 +1,6 @@
 #include "include/bullet.h"
 
-Bullet::Bullet(int x, int y, int vx, int vy, int speed, Controller* c) :
+Bullet::Bullet(double x, double y, double vx, double vy, double speed, Controller* c) :
     GameActor(x, y, vx, vy, speed, c),
     status_(true) {}
 

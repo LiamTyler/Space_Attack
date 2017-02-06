@@ -4,6 +4,7 @@
 #include <SDL2/SDL_image.h>
 #include "include/controller.h"
 #include "include/player.h"
+#include "include/timer.h"
 
 using namespace std;
 
@@ -19,6 +20,7 @@ int main( int argc, char* args[] ) {
 
     bool quit = false;
     SDL_Event e;
+    Timer stepTimer;
 
     while( !quit ) {
         while( SDL_PollEvent( &e ) != 0 )
@@ -77,10 +79,13 @@ int main( int argc, char* args[] ) {
             }
 
         }
+        float timeStep = stepTimer.getTicks() / 1000.f;
 
         window.ClearScreen();
 
-        p->Update();
+        p->Update(timeStep);
+
+        stepTimer.Start();
 
         window.UpdateScreen();
     }
