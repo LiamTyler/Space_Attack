@@ -1,7 +1,6 @@
 #ifndef SRC_INCLUDE_GAMEACTOR_H_
 #define SRC_INCLUDE_GAMEACTOR_H_
 
-#include "include/controller.h"
 #include "include/movement.h"
 
 class GameActor {

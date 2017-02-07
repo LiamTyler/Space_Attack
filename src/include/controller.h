@@ -3,6 +3,8 @@
 
 #include <SDL2/SDL.h>
 #include "include/timer.h"
+#include "include/command.h"
+#include "include/inputHandler.h"
 
 class Controller {
     public:
@@ -17,11 +19,14 @@ class Controller {
         int getHeight() { return screenHeight_; }
         SDL_Renderer* getRenderer() { return gRenderer_; }
         double getTimeStep() { return timer_->getTimeStep(); }
+        Command* HandleInput(SDL_Event& e) { return inputHandler_->HandleInput(e); }
     private:
         Controller();
-
         static Controller* instance_;
+
+        // Global handlers and data
         Timer* timer_;
+        InputHandler* inputHandler_;
         int screenWidth_;
         int screenHeight_;
         SDL_Window* gWindow_;

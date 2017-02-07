@@ -1,7 +1,6 @@
 #ifndef SRC_INCLUDE_WEAPON_H_
 #define SRC_INCLUDE_WEAPON_H_
 
-#include "include/controller.h"
 #include "include/bullet.h"
 #include <vector>
 

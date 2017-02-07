@@ -1,8 +1,8 @@
 #ifndef SRC_INCLUDE_INPUT_HANDLER_H_
 #define SRC_INCLUDE_INPUT_HANDLER_H_
 
-#include "include/command.h"
 #include <SDL2/SDL.h>
+#include "include/command.h"
 #include <map>
 
 class InputHandler {

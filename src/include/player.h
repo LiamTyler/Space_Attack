@@ -3,7 +3,6 @@
 
 #include "include/gameActor.h"
 #include "include/weapon.h"
-#include "include/controller.h"
 
 class Player : public GameActor {
     public:

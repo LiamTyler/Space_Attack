@@ -1,4 +1,5 @@
 #include "include/weapon.h"
+#include "include/controller.h"
 
 Weapon::Weapon() : bullets_() {}
 

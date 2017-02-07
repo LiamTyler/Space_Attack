@@ -1,4 +1,6 @@
 #include "include/bullet.h"
+#include "include/controller.h"
+#include <SDL2/SDL.h>
 
 Bullet::Bullet(double x, double y, double vx, double vy, double speed) :
     GameActor(x, y, vx, vy, speed),

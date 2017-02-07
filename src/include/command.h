@@ -3,6 +3,8 @@
 
 #include "include/gameActor.h"
 
+class GameActor;
+
 class Command {
     public:
         virtual ~Command() {}

@@ -13,7 +13,8 @@ using namespace std;
 Controller* Controller::instance_ = nullptr;
 
 int main( int argc, char* args[] ) {
-    if (!Controller::getInstance()->Init(1280, 720)) {
+    Controller* controller = Controller::getInstance();
+    if (!controller->Init(1280, 720)) {
         cerr << "Window failed to init" << endl;
         return 1;
     }
@@ -22,19 +23,18 @@ int main( int argc, char* args[] ) {
 
     bool quit = false;
     SDL_Event e;
-    InputHandler inputHandler;
 
     while( !quit ) {
         while( SDL_PollEvent( &e ) != 0 ) {
             quit = e.type == SDL_QUIT;
-            Command* command = inputHandler.HandleInput(e);
+            Command* command = controller->HandleInput(e);
             if (command)
                 command->execute(*p);
         }
-        Controller::getInstance()->ClearScreen();
+        controller->ClearScreen();
         p->Update();
 
-        Controller::getInstance()->UpdateScreen();
+        controller->UpdateScreen();
     }
 
     return 0;

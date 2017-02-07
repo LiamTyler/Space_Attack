@@ -8,8 +8,8 @@ Controller::Controller() : screenWidth_(1280),
     screenHeight_(720),
     gWindow_(nullptr),
     gRenderer_(nullptr),
-    timer_(new Timer) {
-
+    timer_(new Timer),
+    inputHandler_(new InputHandler) {
 }
 
 Controller* Controller::getInstance() {
@@ -59,6 +59,7 @@ bool Controller::Init(int width, int height) {
 
 Controller::~Controller() {
     delete timer_;
+    delete inputHandler_;
     SDL_DestroyRenderer( gRenderer_ );
     SDL_DestroyWindow( gWindow_ );
 

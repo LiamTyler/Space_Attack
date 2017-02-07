@@ -1,4 +1,5 @@
 #include "include/gameActor.h"
+#include "include/controller.h"
 
 GameActor::GameActor() : x_(0),
                          y_(0),
