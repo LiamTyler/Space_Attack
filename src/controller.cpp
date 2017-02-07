@@ -11,14 +11,16 @@ Controller::Controller() : screenWidth_(1280),
 
 }
 
-Controller::Controller(int width, int height) : screenWidth_(width),
-    screenHeight_(height),
-    gWindow_(nullptr),
-    gRenderer_(nullptr) {
-
+Controller* Controller::getInstance() {
+    if (!instance_)
+        instance_ = new Controller;
+    return instance_;
 }
 
-bool Controller::Init() {
+bool Controller::Init(int width, int height) {
+    screenWidth_ = width;
+    screenHeight_ = height;
+
     if( SDL_Init( SDL_INIT_VIDEO ) < 0 ) {
         cerr << "SDL could not initialize! SDL Error: " << SDL_GetError() << endl;
         return false;

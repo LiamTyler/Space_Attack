@@ -7,13 +7,12 @@
 
 class Weapon {
     public:
-        explicit Weapon(Controller* c);
+        Weapon();
         ~Weapon();
         virtual void Fire(int x, int y);
         void Update(double timeStep);
     protected:
         std::vector<Bullet> bullets_;
-        Controller* controller_;
 };
 
 #endif

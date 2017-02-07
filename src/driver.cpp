@@ -10,15 +10,15 @@
 
 using namespace std;
 
+Controller* Controller::instance_ = nullptr;
+
 int main( int argc, char* args[] ) {
-    Controller window(1280, 720);
-    if (!window.Init()) {
+    if (!Controller::getInstance()->Init(1280, 720)) {
         cerr << "Window failed to init" << endl;
         return 1;
     }
-    SDL_Renderer* gRenderer = window.getRenderer();
 
-    Player* p = new Player(&window);
+    Player* p = new Player;
 
     bool quit = false;
     SDL_Event e;
@@ -34,13 +34,13 @@ int main( int argc, char* args[] ) {
         }
         float timeStep = stepTimer.getTicks() / 1000.f;
 
-        window.ClearScreen();
+        Controller::getInstance()->ClearScreen();
 
         p->Update(timeStep);
 
         stepTimer.Start();
 
-        window.UpdateScreen();
+        Controller::getInstance()->UpdateScreen();
     }
 
     return 0;

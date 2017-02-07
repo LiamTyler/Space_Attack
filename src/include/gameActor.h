@@ -7,7 +7,7 @@
 class GameActor {
     public:
         GameActor();
-        GameActor(double x, double y, int vx, int vy, double speed, Controller* c);
+        GameActor(double x, double y, int vx, int vy, double speed);
         ~GameActor();
         virtual void UpdatePosition(double timeStep);
         virtual void Draw();
@@ -32,13 +32,11 @@ class GameActor {
         int getVelX() { return movement_->getVelX(); }
         int getVelY() { return movement_->getVelY(); }
         double getSpeed() { return movement_->getSpeed(); }
-        Controller* getController() { return controller_; }
 
     protected:
         double x_;
         double y_;
         Movement* movement_;
-        Controller* controller_;
 };
 
 #endif

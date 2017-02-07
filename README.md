@@ -26,12 +26,13 @@ Below is a record if issues to fix and features to implement, mostly so I don't 
     - (2/6/17) smooth movement
     - (2/6/17) Better method for binding commands
     - (2/6/17) Command design pattern
+    - (2/7/17) Reorganize controller, possibly make it so not every class needs reference to it
+        - Made controller a singleton
 
 #### In Progress:
 
 #### Future:
     - Reorganize bullet + weapon classes
-    - Reorganize controller, possibly make it so not every class needs reference to it
     - Textures
     - collision detection
     - Quad tree

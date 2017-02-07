@@ -5,16 +5,20 @@
 
 class Controller {
     public:
-        Controller();
-        Controller(int width, int height);
         ~Controller();
-        bool Init();
+
+        bool Init(int width, int height);
         void ClearScreen();
         void UpdateScreen();
+
+        static Controller* getInstance();
         int getWidth() { return screenWidth_; }
         int getHeight() { return screenHeight_; }
         SDL_Renderer* getRenderer() { return gRenderer_; }
     private:
+        Controller();
+
+        static Controller* instance_;
         int screenWidth_;
         int screenHeight_;
         SDL_Window* gWindow_;

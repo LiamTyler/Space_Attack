@@ -7,9 +7,9 @@
 
 class Player : public GameActor {
     public:
-        Player(Controller* c);
+        Player();
         Player(double x, double y, double w, double h, int vx, int vy,
-               double speed, Controller* c, Weapon* wp);
+               double speed, Weapon* wp);
         virtual void Update(double timeStep);
         virtual void UpdatePosition(double timeStep);
         virtual void Draw();

@@ -1,13 +1,11 @@
 #include "include/weapon.h"
 
-Weapon::Weapon(Controller* c) : bullets_(),
-                                controller_(c) {}
+Weapon::Weapon() : bullets_() {}
 
 Weapon::~Weapon() {}
 
-
 void Weapon::Fire(int x, int y) {
-    Bullet b = Bullet(x, y, 0, -1, 150, controller_);
+    Bullet b = Bullet(x, y, 0, -1, 150);
     b.Draw();
     bullets_.push_back(b);
 }

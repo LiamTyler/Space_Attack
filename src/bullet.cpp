@@ -1,20 +1,21 @@
 #include "include/bullet.h"
 
-Bullet::Bullet(double x, double y, double vx, double vy, double speed, Controller* c) :
-    GameActor(x, y, vx, vy, speed, c),
+Bullet::Bullet(double x, double y, double vx, double vy, double speed) :
+    GameActor(x, y, vx, vy, speed),
     status_(true) {}
 
 void Bullet::UpdatePosition(double timeStep) {
     x_ += timeStep * movement_->getSpeed() * movement_->getVelX();
     y_ += timeStep * movement_->getSpeed() * movement_->getVelY();
 
-    if (x_ < 0 || controller_->getWidth() <= x_ ||
-        y_ < 0 || controller_->getHeight() <= y_)
+    Controller* c = Controller::getInstance();
+    if (x_ < 0 || c->getWidth() <= x_ || y_ < 0 || c->getHeight() <= y_)
         status_ = false;
 }
 
 void Bullet::Draw() {
+    Controller* c = Controller::getInstance();
     SDL_Rect fillRect = { (int) x_, (int) y_, 10, 20 };
-    SDL_SetRenderDrawColor( controller_->getRenderer(), 0, 0, 255, 255);
-    SDL_RenderFillRect(controller_->getRenderer(), &fillRect);
+    SDL_SetRenderDrawColor( c->getRenderer(), 0, 0, 255, 255);
+    SDL_RenderFillRect(c->getRenderer(), &fillRect);
 }

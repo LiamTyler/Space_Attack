@@ -2,13 +2,12 @@
 
 GameActor::GameActor() : x_(0),
                          y_(0),
-                         movement_(new Movement),
-                         controller_(nullptr) {}
+                         movement_(new Movement) {}
 
-GameActor::GameActor(double x, double y, int vx, int vy, double speed, Controller* c) : x_(x),
+GameActor::GameActor(double x, double y, int vx, int vy, double speed) : x_(x),
                                                                 y_(y),
-                                                                movement_(new Movement(vx,vy,speed)),
-                                                                controller_(c) {
+                                                                movement_(new Movement(vx,vy,speed))
+{
 }
 
 GameActor::~GameActor() {}
