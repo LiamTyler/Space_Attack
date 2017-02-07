@@ -31,11 +31,12 @@ Below is a record if issues to fix and features to implement, mostly so I don't 
     - (2/6/17) Command design pattern
     - (2/7/17) Reorganize controller, possibly make it so not every class needs reference to it
         - Made controller a singleton
-
-#### In Progress:
     - (2/7/17) Reorganizing the timer and input handler into the controller
 
+#### In Progress:
+
 #### Future:
+    - basic enemy
     - Reorganize bullet + weapon classes
     - Textures
     - collision detection
