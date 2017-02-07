@@ -8,144 +8,83 @@ Movement::Movement(int vx, int vy, double speed) : x_primary_(new node{ vx, null
                                                    y_primary_(new node{ vy, nullptr }),
                                                    speed_(speed) {}
 
-void Movement::MoveLeft() {
-    if (x_primary_->amount != -1) {
+node* Movement::Push(node* head, int amt) {
+    if (head->amount != amt) {
         node* new_node = new node;
-        new_node->amount = -1;
-        if (x_primary_->next)
-            delete x_primary_->next;
-        new_node->next = x_primary_;
-        x_primary_ = new_node;
+        new_node->amount = amt;
+        if (head && head->next) {
+            delete head->next;
+            head->next = nullptr;
+        }
+        new_node->next = head;
+        return new_node;
+    } else {
+        return head;
     }
+}
+
+void Movement::ClearSecond(node* head) {
+    if (head->next) {
+        delete head->next;
+        head->next = nullptr;
+    }
+}
+
+node* Movement::Stop(node* head, int dir) {
+    if (head->amount == dir) {
+        node* second = head->next;
+        delete head;
+        if (second) {
+            head = second;
+            head->next = nullptr;
+        } else {
+            head = new node { 0, nullptr};
+        }
+    } else if (head->amount == dir * -1) {
+        if (head->next->amount == dir) {
+            delete head->next;
+            head->next = nullptr;
+        }
+    }
+    return head;
+}
+
+void Movement::MoveLeft() {
+    x_primary_ = Push(x_primary_, -1);
 }
 
 void Movement::MoveRight() {
-    if (x_primary_->amount != 1) {
-        node* new_node = new node;
-        new_node->amount = 1;
-        if (x_primary_->next)
-            delete x_primary_->next;
-        new_node->next = x_primary_;
-        x_primary_ = new_node;
-    }
+    x_primary_ = Push(x_primary_, 1);
 }
 
 void Movement::MoveUp() {
-    if (y_primary_->amount != -1) {
-        node* new_node = new node;
-        new_node->amount = -1;
-        if (y_primary_->next)
-            delete y_primary_->next;
-        new_node->next = y_primary_;
-        y_primary_ = new_node;
-    }
+    y_primary_ = Push(y_primary_, -1);
 }
 
 void Movement::MoveDown() {
-    if (y_primary_->amount != 1) {
-        node* new_node = new node;
-        new_node->amount = 1;
-        if (y_primary_->next)
-            delete y_primary_->next;
-        new_node->next = y_primary_;
-        y_primary_ = new_node;
-    }
+    y_primary_ = Push(y_primary_, 1);
 }
 
 void Movement::StopLeft() {
-    if (x_primary_->amount == -1) {
-        node* second = x_primary_->next;
-        delete x_primary_;
-        if (second) {
-            x_primary_ = second;
-            x_primary_->next = nullptr;
-        } else {
-            x_primary_ = new node;
-            x_primary_->amount = 0;
-            x_primary_->next = nullptr;
-        }
-    } else if (x_primary_->amount == 1) {
-        if (x_primary_->next->amount == -1) {
-            delete x_primary_->next;
-            x_primary_->next = nullptr;
-        }
-    }
+    x_primary_ = Stop(x_primary_, -1);
 }
             
 void Movement::StopRight() {
-    if (x_primary_->amount == 1) {
-        node* second = x_primary_->next;
-        delete x_primary_;
-        if (second) {
-            x_primary_ = second;
-            x_primary_->next = nullptr;
-        } else {
-            x_primary_ = new node;
-            x_primary_->amount = 0;
-            x_primary_->next = nullptr;
-        }
-    } else if (x_primary_->amount == -1) {
-        if (x_primary_->next->amount == 1) {
-            delete x_primary_->next;
-            x_primary_->next = nullptr;
-        }
-    }
+    x_primary_ = Stop(x_primary_, 1);
 }
 
 void Movement::StopUp() {
-    if (y_primary_->amount == -1) {
-        node* second = y_primary_->next;
-        delete y_primary_;
-        if (second) {
-            y_primary_ = second;
-            y_primary_->next = nullptr;
-        } else {
-            y_primary_ = new node;
-            y_primary_->amount = 0;
-            y_primary_->next = nullptr;
-        }
-    } else if (y_primary_->amount == 1) {
-        if (y_primary_->next->amount == 1) {
-            delete y_primary_->next;
-            y_primary_->next = nullptr;
-        }
-    }
+    y_primary_ = Stop(y_primary_, -1);
 }
 
 void Movement::StopDown() {
-    if (y_primary_->amount == 1) {
-        node* second = y_primary_->next;
-        delete y_primary_;
-        if (second) {
-            y_primary_ = second;
-            y_primary_->next = nullptr;
-        } else {
-            y_primary_ = new node;
-            y_primary_->amount = 0;
-            y_primary_->next = nullptr;
-        }
-    } else if (y_primary_->amount == -1) {
-        if (y_primary_->next->amount == 1) {
-            delete y_primary_->next;
-            y_primary_->next = nullptr;
-        }
-    }
+    y_primary_ = Stop(y_primary_, 1);
 }
 
 void Movement::setVelX(int v) {
-    node* new_node = new node;
-    new_node->amount = v;
-    if (x_primary_->next)
-        delete x_primary_->next;
-    new_node->next = x_primary_;
-    x_primary_ = new_node;
+    x_primary_ = Push(x_primary_, v);
 }
 
 void Movement::setVelY(int v) {
-    node* new_node = new node;
-    new_node->amount = v;
-    if (y_primary_->next)
-        delete y_primary_->next;
-    new_node->next = y_primary_;
-    y_primary_ = new_node;
+    y_primary_ = Push(y_primary_, v);
 }

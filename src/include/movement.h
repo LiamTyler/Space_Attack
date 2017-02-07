@@ -1,6 +1,11 @@
 #ifndef SRC_INCLUDE_MOVEMENT_H_
 #define SRC_INCLUDE_MOVEMENT_H_
 
+struct node {
+    int amount;
+    node* next;
+};
+
 class Movement {
     public:
         Movement();
@@ -21,10 +26,9 @@ class Movement {
         double getSpeed() { return speed_; }
 
     private:
-        struct node {
-            int amount;
-            node* next;
-        };
+        node* Push(node* head, int amt);
+        node* Stop(node* head, int dir);
+        void ClearSecond(node* head);
         node* x_primary_;
         node* y_primary_;
         double speed_;
