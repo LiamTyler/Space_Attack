@@ -13,10 +13,6 @@ GameActor::GameActor(double x, double y, int vx, int vy, double speed) : x_(x),
 GameActor::~GameActor() {}
 
 void GameActor::UpdatePosition(double timeStep) {
-    /*
-    x_ += timeStep * speed_ * vel_x_;
-    y_ += timeStep * speed_ * vel_y_;
-    */
     x_ += timeStep * movement_->getSpeed() * movement_->getVelX();
     y_ += timeStep * movement_->getSpeed() * movement_->getVelY();
 
@@ -24,7 +20,7 @@ void GameActor::UpdatePosition(double timeStep) {
 
 void GameActor::Draw() {}
 
-void GameActor::Update(double timeStep) {
-    UpdatePosition(timeStep);
+void GameActor::Update() {
+    UpdatePosition(Controller::getInstance()->getTimeStep());
     Draw();
 }

@@ -11,7 +11,7 @@ class GameActor {
         ~GameActor();
         virtual void UpdatePosition(double timeStep);
         virtual void Draw();
-        virtual void Update(double timeStep);
+        virtual void Update();
 
         void MoveLeft() { movement_->MoveLeft(); }
         void MoveRight() { movement_->MoveRight(); }

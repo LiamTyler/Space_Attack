@@ -16,7 +16,7 @@ class Controller {
         int getWidth() { return screenWidth_; }
         int getHeight() { return screenHeight_; }
         SDL_Renderer* getRenderer() { return gRenderer_; }
-        Timer* getTimer() { return timer_; }
+        double getTimeStep() { return timer_->getTimeStep(); }
     private:
         Controller();
 

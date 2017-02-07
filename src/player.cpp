@@ -18,15 +18,16 @@ Player::Player(double x, double y, double w, double h, int vx, int vy, double sp
 
 }
 
-void Player::Update(double timeStep) {
-    UpdatePosition(timeStep);
+void Player::Update() {
+    UpdatePosition(Controller::getInstance()->getTimeStep());
     Draw();
-    weapon_->Update(timeStep);
+    weapon_->Update();
 }
 
 void Player::UpdatePosition(double timeStep) {
-    double sHeight = Controller::getInstance()->getHeight();
-    double sWidth = Controller::getInstance()->getWidth();
+    Controller* c = Controller::getInstance();
+    double sHeight = c->getHeight();
+    double sWidth = c->getWidth();
     x_ = std::max(0.0, std::min(sWidth - width_, x_ +
                 timeStep * movement_->getSpeed() * movement_->getVelX()));
     y_ = std::max(0.0, std::min(sHeight - height_, y_ +

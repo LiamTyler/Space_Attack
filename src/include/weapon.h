@@ -10,7 +10,7 @@ class Weapon {
         Weapon();
         ~Weapon();
         virtual void Fire(int x, int y);
-        void Update(double timeStep);
+        void Update();
     protected:
         std::vector<Bullet> bullets_;
 };

@@ -1,4 +1,4 @@
-# Space Attack
+# Space Attack -- Status: Active and in progress
 
 Space Attack (or whatever the name becomes) is a personal project I've started since I have wanted to make a game for a while. The game is going to be a blend of the classic space invaders and castle defender. There will be at least two modes: one where you are defending your base using your spaceship and placed defenses, and one where you are on the offensive, trying to clear out an area of aliens. Some of the intended features include:
     - Multple Levels of AI for the enemies
@@ -14,10 +14,13 @@ A large part of this project is to explore different areas of game development. 
 
 Below is a record if issues to fix and features to implement, mostly so I don't forget and can track progress.
 
-### Current issues:
-    - VSYNC currently not working. Lots of choppiness. (2/5/17). See frame independent movement.
-    - Key.repeat flag just not working with at least sdl 2.0.5 (2/5/17)
-        - turns out that keyup is getting triggered every other frame... no clue why yet
+### Issues:
+
+#### Past Issues:
+    - (2/7/17) Key.repeat was not working on the libsdl2-dev install of sdl2.0.5. Fixed with latest hg install though
+
+#### Current issues:
+    - (2/5/17) VSYNC currently not working. Lots of choppiness. See frame independent movement.
 
 ### Features:
 
@@ -30,6 +33,7 @@ Below is a record if issues to fix and features to implement, mostly so I don't 
         - Made controller a singleton
 
 #### In Progress:
+    - (2/7/17) Reorganizing the timer and input handler into the controller
 
 #### Future:
     - Reorganize bullet + weapon classes

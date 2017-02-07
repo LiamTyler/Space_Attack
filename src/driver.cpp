@@ -32,7 +32,7 @@ int main( int argc, char* args[] ) {
                 command->execute(*p);
         }
         Controller::getInstance()->ClearScreen();
-        p->Update(Controller::getInstance()->getTimer()->getTimeStep());
+        p->Update();
 
         Controller::getInstance()->UpdateScreen();
     }

@@ -10,10 +10,11 @@ void Weapon::Fire(int x, int y) {
     bullets_.push_back(b);
 }
 
-void Weapon::Update(double timeStep) {
+void Weapon::Update() {
     std::vector<Bullet> new_bullets;
     for (int i = 0; i < bullets_.size(); i++) {
-       bullets_[i].UpdatePosition(timeStep);
+       bullets_[i].UpdatePosition(Controller::getInstance()->getTimeStep());
+
        if (bullets_[i].isAlive()) {
            new_bullets.push_back(bullets_[i]);
            bullets_[i].Draw();
