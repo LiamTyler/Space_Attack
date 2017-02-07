@@ -13,6 +13,8 @@ class Timer {
         void Unpause();
 
         uint32_t getTicks();
+        void CalculateTimeStep();
+        double getTimeStep() { return timeStep_; }
         bool isStarted() { return started_; }
         bool isPaused() { return paused_; }
 
@@ -21,6 +23,7 @@ class Timer {
         uint32_t pausedTicks_;
         bool paused_;
         bool started_;
+        double timeStep_;
 };
 
 #endif

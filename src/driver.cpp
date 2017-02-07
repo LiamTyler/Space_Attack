@@ -22,7 +22,6 @@ int main( int argc, char* args[] ) {
 
     bool quit = false;
     SDL_Event e;
-    Timer stepTimer;
     InputHandler inputHandler;
 
     while( !quit ) {
@@ -32,13 +31,8 @@ int main( int argc, char* args[] ) {
             if (command)
                 command->execute(*p);
         }
-        float timeStep = stepTimer.getTicks() / 1000.f;
-
         Controller::getInstance()->ClearScreen();
-
-        p->Update(timeStep);
-
-        stepTimer.Start();
+        p->Update(Controller::getInstance()->getTimer()->getTimeStep());
 
         Controller::getInstance()->UpdateScreen();
     }

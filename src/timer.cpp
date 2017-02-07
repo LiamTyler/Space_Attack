@@ -4,7 +4,8 @@
 Timer::Timer() : startTicks_(0),
                  pausedTicks_(0),
                  paused_(false),
-                 started_(false) {}
+                 started_(false),
+                 timeStep_(0.0) {}
 
 void Timer::Start() {
     started_ = true;
@@ -48,4 +49,8 @@ uint32_t Timer::getTicks() {
         }
     }
     return time;
+}
+
+void Timer::CalculateTimeStep() {
+    timeStep_ = static_cast<double>(getTicks()) / 1000;
 }

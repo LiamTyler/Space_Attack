@@ -7,7 +7,8 @@ using namespace std;
 Controller::Controller() : screenWidth_(1280),
     screenHeight_(720),
     gWindow_(nullptr),
-    gRenderer_(nullptr) {
+    gRenderer_(nullptr),
+    timer_(new Timer) {
 
 }
 
@@ -57,6 +58,7 @@ bool Controller::Init(int width, int height) {
 }
 
 Controller::~Controller() {
+    delete timer_;
     SDL_DestroyRenderer( gRenderer_ );
     SDL_DestroyWindow( gWindow_ );
 
@@ -66,10 +68,12 @@ Controller::~Controller() {
 
 // TODO:: Allow for clearing to a different color or background image
 void Controller::ClearScreen() {
+    timer_->CalculateTimeStep();
     SDL_SetRenderDrawColor( gRenderer_, 0xFF, 0xFF, 0xFF, 0xFF );
     SDL_RenderClear( gRenderer_ );
 }
 
 void Controller::UpdateScreen() {
+    timer_->Start();
     SDL_RenderPresent( gRenderer_ );
 }
