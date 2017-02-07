@@ -17,19 +17,21 @@ Below is a record if issues to fix and features to implement, mostly so I don't 
 ### Current issues:
     - VSYNC currently not working. Lots of choppiness. (2/5/17). See frame independent movement.
     - Key.repeat flag just not working with at least sdl 2.0.5 (2/5/17)
+        - turns out that keyup is getting triggered every other frame... no clue why yet
 
 ### Features:
 
 #### Completed:
     - (2/6/17) Implemented simple frame independent movement
     - (2/6/17) smooth movement
+    - (2/6/17) Better method for binding commands
+    - (2/6/17) Command design pattern
 
 #### In Progress:
-    - (2/6/17) Command design pattern (NEEDS WORK!!)
 
 #### Future:
-    - Manual solution to Key.Repeat issue and timer for weapon rate of fire
     - Reorganize bullet + weapon classes
     - Reorganize controller, possibly make it so not every class needs reference to it
+    - Textures
     - collision detection
     - Quad tree
