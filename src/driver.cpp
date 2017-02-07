@@ -26,16 +26,11 @@ int main( int argc, char* args[] ) {
     InputHandler inputHandler;
 
     while( !quit ) {
-        while( SDL_PollEvent( &e ) != 0 )
-        {
-            if( e.type == SDL_QUIT ) {
-                quit = true;
-            } else {
-                Command* command = inputHandler.HandleInput(e);
-                if (command) {
-                    command->execute(*p);
-                }
-            }
+        while( SDL_PollEvent( &e ) != 0 ) {
+            quit = e.type == SDL_QUIT;
+            Command* command = inputHandler.HandleInput(e);
+            if (command)
+                command->execute(*p);
         }
         float timeStep = stepTimer.getTicks() / 1000.f;
 

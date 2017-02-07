@@ -11,57 +11,25 @@
 #include "include/stopFireCommand.h"
 #include <SDL2/SDL.h>
 
-InputHandler::InputHandler() : left_(new MoveLeftCommand),
-                               leftUp_(new StopLeftCommand),
-                               right_(new MoveRightCommand),
-                               rightUp_(new StopRightCommand),
-                               up_(new MoveUpCommand),
-                               upUp_(new StopUpCommand),
-                               down_(new MoveDownCommand),
-                               downUp_(new StopDownCommand),
-                               fire_(new FireCommand),
-                               fireUp_(new StopFireCommand) {}
+InputHandler::InputHandler() {
+    pressed_commands_[SDLK_UP] = new MoveUpCommand();
+    pressed_commands_[SDLK_DOWN] = new MoveDownCommand();
+    pressed_commands_[SDLK_LEFT] = new MoveLeftCommand();
+    pressed_commands_[SDLK_RIGHT] = new MoveRightCommand();
+    pressed_commands_[SDLK_SPACE] = new FireCommand();
 
-InputHandler::InputHandler(Command* left, Command* leftUp,
-                           Command* right, Command* rightUp,
-                           Command* up, Command* upUp,
-                           Command* down, Command* downUp,
-                           Command* fire, Command* fireUp) : 
-    left_(left), leftUp_(leftUp),
-    right_(right), rightUp_(rightUp),
-    up_(up), upUp_(upUp),
-    down_(down), downUp_(downUp),
-    fire_(fire), fireUp_(fireUp) {}
+    released_commands_[SDLK_UP] = new StopUpCommand();
+    released_commands_[SDLK_DOWN] = new StopDownCommand();
+    released_commands_[SDLK_LEFT] = new StopLeftCommand();
+    released_commands_[SDLK_RIGHT] = new StopRightCommand();
+    released_commands_[SDLK_SPACE] = new StopFireCommand();
+}
 
 Command* InputHandler::HandleInput(SDL_Event& e) {
     if (e.type == SDL_KEYDOWN && e.key.repeat == 0) {
-        switch (e.key.keysym.sym) {
-            case SDLK_UP:
-                return up_;
-            case SDLK_DOWN:
-                return down_;
-            case SDLK_LEFT:
-                return left_;
-            case SDLK_RIGHT:
-                return right_;
-            case SDLK_SPACE:
-                return fire_;
-            default:
-                return nullptr;
-        }
+        return pressed_commands_[e.key.keysym.sym];
     } else if (e.type == SDL_KEYUP && e.key.repeat == 0) {
-        switch (e.key.keysym.sym) {
-            case SDLK_UP:
-                return upUp_;
-            case SDLK_DOWN:
-                return downUp_;
-            case SDLK_LEFT:
-                return leftUp_;
-            case SDLK_RIGHT:
-                return rightUp_;
-            default:
-                return nullptr;
-        }
+        return released_commands_[e.key.keysym.sym];
     }
     return nullptr;
 }
