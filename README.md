@@ -22,12 +22,13 @@ Below is a record if issues to fix and features to implement, mostly so I don't 
 
 #### Completed:
     - (2/6/17) Implemented simple frame independent movement
+    - (2/6/17) smooth movement
 
 #### In Progress:
     - (2/6/17) Command design pattern (NEEDS WORK!!)
-    - (2/6/17) smooth movement
 
 #### Future:
+    - Manual solution to Key.Repeat issue and timer for weapon rate of fire
     - Reorganize bullet + weapon classes
     - Reorganize controller, possibly make it so not every class needs reference to it
     - collision detection
