@@ -19,6 +19,10 @@ Enemy::Enemy(double x, double y, double w, double h, int vx, int vy,
 
 }
 
+Enemy::~Enemy() {
+    delete weapon_;
+}
+
 void Enemy::Update() {
     UpdatePosition(Controller::getInstance()->getTimeStep());
     Draw();

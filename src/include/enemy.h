@@ -9,6 +9,7 @@ class Enemy : public GameActor {
         Enemy();
         Enemy(double x, double y, double w, double h, int vx, int vy,
               double speed_x, double speed_y, Weapon* wp);
+        ~Enemy();
         virtual void Update();
         virtual void UpdatePosition(double timeStep);
         virtual void Draw();
