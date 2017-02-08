@@ -32,6 +32,7 @@ Below is a record if issues to fix and features to implement, mostly so I don't 
     - (2/7/17) Reorganize controller, possibly make it so not every class needs reference to it
         - Made controller a singleton
     - (2/7/17) Reorganizing the timer and input handler into the controller
+    - (2/7/17) Fixed memory leaks (besides opengl's implicit memory leaks)
 
 #### In Progress:
 
