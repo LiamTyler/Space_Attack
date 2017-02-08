@@ -3,15 +3,16 @@
 #include <algorithm>
 
 Enemy::Enemy() : GameActor(Controller::getInstance()->getWidth() / 2,
-                             Controller::getInstance()->getHeight() / 2, 1, 0, 200),
+                             Controller::getInstance()->getHeight() / 2, 1, 0, 200, 200),
                              width_(50),
                              height_(50),
                              weapon_(new Weapon) {
 
 }
 
-Enemy::Enemy(double x, double y, double w, double h, int vx, int vy, double speed, Weapon* wp) :
-    GameActor(x, y, vx, vy, speed),
+Enemy::Enemy(double x, double y, double w, double h, int vx, int vy,
+             double speed_x, double speed_y, Weapon* wp) :
+    GameActor(x, y, vx, vy, speed_x, speed_y),
     width_(w),
     height_(h),
     weapon_(wp) {
@@ -28,10 +29,8 @@ void Enemy::UpdatePosition(double timeStep) {
     Controller* c = Controller::getInstance();
     double sHeight = c->getHeight();
     double sWidth = c->getWidth();
-    x_ = std::max(0.0, std::min(sWidth - width_, x_ +
-                timeStep * movement_->getSpeed() * movement_->getVelX()));
-    y_ = std::max(0.0, std::min(sHeight - height_, y_ +
-                timeStep * movement_->getSpeed() * movement_->getVelY()));
+    x_ = std::max(0.0, std::min(sWidth - width_, x_ + timeStep * movement_->getVelX()));
+    y_ = std::max(0.0, std::min(sHeight - height_, y_ + timeStep * movement_->getVelY()));
 }
 
 void Enemy::Draw() {    

@@ -5,7 +5,7 @@
 
 class Bullet : public GameActor {
     public:
-        Bullet(double x, double y, double vx, double vy, double speed);
+        Bullet(double x, double y, double vx, double vy, double speed_x, double speed_y);
         virtual void UpdatePosition(double timeStep);
         virtual void Draw();
         bool isAlive() { return status_; }

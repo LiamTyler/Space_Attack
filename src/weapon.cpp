@@ -6,7 +6,7 @@ Weapon::Weapon() : bullets_() {}
 Weapon::~Weapon() {}
 
 void Weapon::Fire(int x, int y) {
-    Bullet b = Bullet(x, y, 0, -1, 150);
+    Bullet b = Bullet(x, y, 0, -1, 150, 150);
     b.Draw();
     bullets_.push_back(b);
 }

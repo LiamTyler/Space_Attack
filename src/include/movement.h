@@ -9,7 +9,7 @@ struct node {
 class Movement {
     public:
         Movement();
-        Movement(int vx, int vy, double speed);
+        Movement(int vx, int vy, double speed_x, double speed_y);
         void MoveLeft();
         void MoveRight();
         void MoveUp();
@@ -20,10 +20,10 @@ class Movement {
         void StopDown();
         void setVelX(int v);
         void setVelY(int v);
-        int getVelX() { return x_primary_->amount; }
-        int getVelY() { return y_primary_->amount; }
-        void setSpeed(double s) { speed_ = s; }
-        double getSpeed() { return speed_; }
+        int getVelX() { return x_primary_->amount * speed_x_; }
+        int getVelY() { return y_primary_->amount * speed_y_; }
+        void setSpeedX(double s) { speed_x_ = s; }
+        void setSpeedY(double s) { speed_y_ = s; }
 
     private:
         node* Push(node* head, int amt);
@@ -31,7 +31,8 @@ class Movement {
         void ClearSecond(node* head);
         node* x_primary_;
         node* y_primary_;
-        double speed_;
+        double speed_x_;
+        double speed_y_;
 };
 
 #endif

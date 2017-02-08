@@ -6,7 +6,7 @@
 class GameActor {
     public:
         GameActor();
-        GameActor(double x, double y, int vx, int vy, double speed);
+        GameActor(double x, double y, int vx, int vy, double speed_x, double speed_y);
         ~GameActor();
         virtual void UpdatePosition(double timeStep);
         virtual void Draw();
@@ -28,9 +28,10 @@ class GameActor {
         void setY(double y) { y_ = y; }
         double getX() { return x_; }
         double getY() { return y_; }
-        int getVelX() { return movement_->getVelX(); }
-        int getVelY() { return movement_->getVelY(); }
-        double getSpeed() { return movement_->getSpeed(); }
+        void setVelX(double x) { movement_->setVelX(x); }
+        void setVelY(double y) { movement_->setVelY(y); }
+        double getVelX() { return movement_->getVelX(); }
+        double getVelY() { return movement_->getVelY(); }
 
     protected:
         double x_;

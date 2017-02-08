@@ -2,11 +2,13 @@
 
 Movement::Movement() : x_primary_(new node{ 0, nullptr }),
                        y_primary_(new node{ 0, nullptr }),
-                       speed_(0) {}
+                       speed_x_(0),
+                       speed_y_(0) {}
 
-Movement::Movement(int vx, int vy, double speed) : x_primary_(new node{ vx, nullptr }),
+Movement::Movement(int vx, int vy, double speed_x, double speed_y) : x_primary_(new node{ vx, nullptr }),
                                                    y_primary_(new node{ vy, nullptr }),
-                                                   speed_(speed) {}
+                                                   speed_x_(speed_x),
+                                                   speed_y_(speed_y) {}
 
 node* Movement::Push(node* head, int amt) {
     if (head->amount != amt) {
