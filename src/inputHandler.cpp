@@ -25,6 +25,14 @@ InputHandler::InputHandler() {
     released_commands_[SDLK_SPACE] = new StopFireCommand();
 }
 
+InputHandler::~InputHandler() {
+    std::map<int, Command*>::iterator it;
+    for (it = pressed_commands_.begin(); it != pressed_commands_.end(); it++)
+        delete it->second;
+    for (it = released_commands_.begin(); it != released_commands_.end(); it++)
+        delete it->second;
+}
+
 Command* InputHandler::HandleInput(SDL_Event& e) {
     if (e.type == SDL_KEYDOWN && e.key.repeat == 0) {
         return pressed_commands_[e.key.keysym.sym];

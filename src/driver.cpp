@@ -37,5 +37,9 @@ int main( int argc, char* args[] ) {
         controller->UpdateScreen();
     }
 
+    delete player;
+    delete enemy;
+    delete controller;
+
     return 0;
 }

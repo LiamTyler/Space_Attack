@@ -10,6 +10,7 @@ class Movement {
     public:
         Movement();
         Movement(int vx, int vy, double speed_x, double speed_y);
+        ~Movement();
         void MoveLeft();
         void MoveRight();
         void MoveUp();

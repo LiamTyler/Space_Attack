@@ -8,6 +8,7 @@
 class InputHandler {
     public:
         InputHandler();
+        ~InputHandler();
         Command* HandleInput(SDL_Event& e);
     private:
         std::map<int, Command*> pressed_commands_;

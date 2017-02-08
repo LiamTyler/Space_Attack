@@ -12,12 +12,13 @@ GameActor::GameActor(double x, double y, int vx, int vy,
 {
 }
 
-GameActor::~GameActor() {}
+GameActor::~GameActor() {
+    delete movement_;
+}
 
 void GameActor::UpdatePosition(double timeStep) {
     x_ += timeStep * movement_->getVelX();
     y_ += timeStep * movement_->getVelY();
-
 }
 
 void GameActor::Draw() {}

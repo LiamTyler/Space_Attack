@@ -57,7 +57,7 @@ bool Controller::Init(int width, int height) {
     return true;
 }
 
-Controller::~Controller() {
+void Controller::Close() {
     delete timer_;
     delete inputHandler_;
     SDL_DestroyRenderer( gRenderer_ );
@@ -65,6 +65,10 @@ Controller::~Controller() {
 
     IMG_Quit();
     SDL_Quit();
+}
+
+Controller::~Controller() {
+    Close();
 }
 
 // TODO:: Allow for clearing to a different color or background image

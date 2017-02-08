@@ -10,6 +10,15 @@ Movement::Movement(int vx, int vy, double speed_x, double speed_y) : x_primary_(
                                                    speed_x_(speed_x),
                                                    speed_y_(speed_y) {}
 
+Movement::~Movement() {
+    if (x_primary_->next)
+        delete x_primary_->next;
+    delete x_primary_;
+    if (y_primary_->next)
+        delete y_primary_->next;
+    delete y_primary_;
+}
+
 node* Movement::Push(node* head, int amt) {
     if (head->amount != amt) {
         node* new_node = new node;

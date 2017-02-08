@@ -19,6 +19,10 @@ Player::Player(double x, double y, double w, double h, int vx,
 
 }
 
+Player::~Player() {
+    delete weapon_;
+}
+
 void Player::Update() {
     UpdatePosition(Controller::getInstance()->getTimeStep());
     Draw();

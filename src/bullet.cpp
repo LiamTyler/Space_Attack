@@ -2,9 +2,11 @@
 #include "include/controller.h"
 #include <SDL2/SDL.h>
 
-Bullet::Bullet(double x, double y, double vx, double vy, double speed_x, double speed_y) :
+Bullet::Bullet(double damage, double x, double y, double vx, double vy,
+               double speed_x, double speed_y) :
     GameActor(x, y, vx, vy, speed_x, speed_y),
-    status_(true) {}
+    status_(true),
+    damage_(damage) {}
 
 void Bullet::UpdatePosition(double timeStep) {
     x_ += timeStep * movement_->getVelX();

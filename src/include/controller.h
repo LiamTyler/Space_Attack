@@ -11,6 +11,7 @@ class Controller {
         ~Controller();
 
         bool Init(int width, int height);
+        void Close();
         void ClearScreen();
         void UpdateScreen();
 
