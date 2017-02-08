@@ -1,16 +1,16 @@
-#include "include/player.h"
+#include "include/enemy.h"
 #include "include/controller.h"
 #include <algorithm>
 
-Player::Player() : GameActor(Controller::getInstance()->getWidth() / 2,
-                             Controller::getInstance()->getHeight() / 2, 0, 0, 200),
+Enemy::Enemy() : GameActor(Controller::getInstance()->getWidth() / 2,
+                             Controller::getInstance()->getHeight() / 2, 1, 0, 200),
                              width_(50),
                              height_(50),
                              weapon_(new Weapon) {
 
 }
 
-Player::Player(double x, double y, double w, double h, int vx, int vy, double speed, Weapon* wp) :
+Enemy::Enemy(double x, double y, double w, double h, int vx, int vy, double speed, Weapon* wp) :
     GameActor(x, y, vx, vy, speed),
     width_(w),
     height_(h),
@@ -18,13 +18,13 @@ Player::Player(double x, double y, double w, double h, int vx, int vy, double sp
 
 }
 
-void Player::Update() {
+void Enemy::Update() {
     UpdatePosition(Controller::getInstance()->getTimeStep());
     Draw();
     weapon_->Update();
 }
 
-void Player::UpdatePosition(double timeStep) {
+void Enemy::UpdatePosition(double timeStep) {
     Controller* c = Controller::getInstance();
     double sHeight = c->getHeight();
     double sWidth = c->getWidth();
@@ -34,13 +34,13 @@ void Player::UpdatePosition(double timeStep) {
                 timeStep * movement_->getSpeed() * movement_->getVelY()));
 }
 
-void Player::Draw() {    
+void Enemy::Draw() {    
     Controller* c = Controller::getInstance();
     SDL_Rect fillRect = { (int) x_, (int) y_, (int) width_, (int) height_ };
-    SDL_SetRenderDrawColor( c->getRenderer(), 0, 0, 255, 255);
+    SDL_SetRenderDrawColor( c->getRenderer(), 255, 0, 0, 255);
     SDL_RenderFillRect( c->getRenderer(), &fillRect);
 }
 
-void Player::Fire() {
+void Enemy::Fire() {
     weapon_->Fire(x_ + width_ / 2, y_ - 20);
 }

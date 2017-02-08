@@ -1,11 +1,9 @@
 #include <iostream>
-#include <stdio.h>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include "include/controller.h"
 #include "include/player.h"
-#include "include/timer.h"
-#include "include/inputHandler.h"
+#include "include/enemy.h"
 #include "include/command.h"
 
 using namespace std;
@@ -19,7 +17,8 @@ int main( int argc, char* args[] ) {
         return 1;
     }
 
-    Player* p = new Player;
+    Player* player = new Player;
+    Enemy* enemy = new Enemy;
 
     bool quit = false;
     SDL_Event e;
@@ -29,10 +28,11 @@ int main( int argc, char* args[] ) {
             quit = e.type == SDL_QUIT;
             Command* command = controller->HandleInput(e);
             if (command)
-                command->execute(*p);
+                command->execute(*player);
         }
         controller->ClearScreen();
-        p->Update();
+        enemy->Update();
+        player->Update();
 
         controller->UpdateScreen();
     }
